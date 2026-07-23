@@ -343,55 +343,7 @@
             </a>
         </section>
 
-        <!-- ================= 7. DOA & HARAPAN (BUKU TAMU DIGITAL) ================= -->
-        <section class="py-12 px-6 md:px-10 bg-white">
-            <div class="max-w-lg mx-auto">
-                <div class="text-center mb-6">
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                        Buku Tamu Digital
-                    </span>
-                    <h3 class="font-heading text-xl md:text-2xl font-bold text-slate-800 mt-2">Doa & Dukungan Kebaikan</h3>
-                    <p class="text-xs text-slate-500 mt-1">Tuliskan doa dan harapan bagi santri dan pembangunan kobong</p>
-                </div>
 
-                <!-- Form Doa -->
-                <form onsubmit="handleDoaSubmit(event)" class="space-y-3 mb-8 bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <div>
-                        <label for="donor-name" class="block text-[11px] font-semibold text-slate-600 mb-1">Nama / Donatur:</label>
-                        <input type="text" id="donor-name" required placeholder="Cth: Hamba Allah / Bpk. Ahmad" class="w-full px-4 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:border-primary bg-white">
-                    </div>
-                    <div>
-                        <label for="donor-message" class="block text-[11px] font-semibold text-slate-600 mb-1">Doa & Ucapan Harapan:</label>
-                        <textarea id="donor-message" required rows="3" placeholder="Tuliskan doa dan ucapan terbaik Anda..." class="w-full px-4 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:border-primary bg-white"></textarea>
-                    </div>
-                    <button type="submit" class="w-full py-3 bg-primary hover:bg-primary-dark text-white font-bold text-xs rounded-xl transition duration-200 shadow-md flex items-center justify-center gap-2">
-                        <span>Kirim Doa & Harapan</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                        </svg>
-                    </button>
-                </form>
-
-                <!-- Container List Doa -->
-                <div id="doa-list" class="space-y-3 max-h-80 overflow-y-auto pr-1">
-                    <div class="p-4 bg-emerald-50/70 border border-emerald-100 rounded-xl">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="font-bold text-xs text-primary">Keluarga Besar Donatur</span>
-                            <span class="text-[10px] text-slate-400">Baru saja</span>
-                        </div>
-                        <p class="text-xs text-slate-700 italic">"Bismillah, semoga pembangunan kobong santri PP Raudhatul Mubarakah berjalan lancar, berkah, dan menjadi saksi amal jariyah di akhirat kelak. Aamiin."</p>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 border border-slate-200/80 rounded-xl">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="font-bold text-xs text-slate-800">Hamba Allah</span>
-                            <span class="text-[10px] text-slate-400">1 jam yang lalu</span>
-                        </div>
-                        <p class="text-xs text-slate-600 italic">"Semoga Allah mempermudah ikhtiar para pengasuh dan santri penghapal Al-Qur'an. Berkah melimpah untuk seluruh dermawan yang berpartisipasi."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- ================= 8. PENUTUP & JAZAKUMULLAH ================= -->
         <section class="py-14 px-6 md:px-10 bg-primary text-white text-center relative overflow-hidden">
@@ -466,43 +418,6 @@
             });
         }
 
-        // 3. Handling Submit Form Buku Tamu Doa
-        function handleDoaSubmit(e) {
-            e.preventDefault();
-            const nameInput = document.getElementById('donor-name');
-            const msgInput = document.getElementById('donor-message');
-            const list = document.getElementById('doa-list');
-
-            if (!nameInput.value.trim() || !msgInput.value.trim()) return;
-
-            const newCard = document.createElement('div');
-            newCard.className = 'p-4 bg-emerald-50/90 border border-emerald-300 rounded-xl transition-all duration-300 transform translate-y-2 opacity-0';
-            newCard.innerHTML = `
-                <div class="flex items-center justify-between mb-1.5">
-                    <span class="font-bold text-xs text-primary">${escapeHtml(nameInput.value)}</span>
-                    <span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded">Baru saja (Anda)</span>
-                </div>
-                <p class="text-xs text-slate-800 italic">"${escapeHtml(msgInput.value)}"</p>
-            `;
-
-            list.prepend(newCard);
-            
-            setTimeout(() => {
-                newCard.classList.remove('translate-y-2', 'opacity-0');
-            }, 50);
-
-            nameInput.value = '';
-            msgInput.value = '';
-        }
-
-        function escapeHtml(text) {
-            return text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
     </script>
 </body>
 </html>
